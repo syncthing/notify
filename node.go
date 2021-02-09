@@ -48,7 +48,7 @@ func (nd node) addchild(name, base string) node {
 }
 
 func (nd node) Add(name string) node {
-	i := indexbase(nd.Name, name)
+	i := indexrel(nd.Name, name)
 	if i == -1 {
 		return node{}
 	}
@@ -104,7 +104,7 @@ Traverse:
 }
 
 func (nd node) Get(name string) (node, error) {
-	i := indexbase(nd.Name, name)
+	i := indexrel(nd.Name, name)
 	if i == -1 {
 		return node{}, errnotexist(name)
 	}
@@ -122,7 +122,7 @@ func (nd node) Get(name string) (node, error) {
 }
 
 func (nd node) Del(name string) error {
-	i := indexbase(nd.Name, name)
+	i := indexrel(nd.Name, name)
 	if i == -1 {
 		return errnotexist(name)
 	}
@@ -181,7 +181,7 @@ Traverse:
 }
 
 func (nd node) WalkPath(name string, fn walkPathFunc) error {
-	i := indexbase(nd.Name, name)
+	i := indexrel(nd.Name, name)
 	if i == -1 {
 		return errnotexist(name)
 	}
